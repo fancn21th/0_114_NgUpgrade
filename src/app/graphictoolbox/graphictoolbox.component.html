@@ -1,0 +1,60 @@
+<mat-tree
+  [dataSource]="dataSource"
+  [treeControl]="treeControl"
+  class="graphictoolbox-tree graphictoolbox-overflow"
+>
+  <!-- This is the tree node template for leaf nodes (no children) -->
+  <mat-tree-node
+    *matTreeNodeDef="let node"
+    matTreeNodeToggle
+    (click)="onClickNode($event, node)"
+    [ngClass]="{ 'selectednode-highlight': activeNode === node }"
+  >
+    <li class="mat-tree-node nodetxtcolor">
+      <!-- use a disabled button to provide padding for tree leaf -->
+      <button mat-icon-button disabled></button>
+      {{ node.entityName }}
+    </li>
+  </mat-tree-node>
+  <!-- This is the tree node template for expandable nodes -->
+  <mat-nested-tree-node
+    *matTreeNodeDef="let node; when: hasChild"
+    (click)="onClickNode($event, node)"
+    [ngClass]="{ 'selectednode-highlight': activeNode === node }"
+  >
+    <li [ngClass]="{ 'selectednode-highlight': activeNode === node }">
+      <div class="mat-tree-node">
+        <button
+          mat-icon-button
+          matTreeNodeToggle
+          [attr.aria-label]="'toggle ' + node.entityName"
+        >
+          <mat-icon class="mat-icon-rtl-mirror">
+            {{ treeControl.isExpanded(node) ? "expand_more" : "chevron_right" }}
+          </mat-icon>
+        </button>
+        {{ node.entityName }}
+      </div>
+      <ul [class.graphictoolbox-tree-invisible]="!treeControl.isExpanded(node)">
+        <ng-container matTreeNodeOutlet></ng-container>
+      </ul>
+    </li>
+  </mat-nested-tree-node>
+</mat-tree>
+<mat-divider></mat-divider>
+<div class="graphiclist-overflow">
+  <mat-grid-list cols="2" rowHeight="1:1">
+    <mat-grid-tile *ngFor="let graphic of graphics">
+      <figure class="item">
+        <img
+          src="./image.svg"
+          [id]="graphic.entityName"
+          draggable="true"
+          (dragstart)="onDragStart($event)"
+          (dragend)="onDragEnd($event)"
+        />
+        <figcaption class="caption">{{ graphic.entityName }}</figcaption>
+      </figure>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

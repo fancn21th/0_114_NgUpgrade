@@ -1,0 +1,64 @@
+.graphictoolbox-tree-invisible {
+  display: none;
+}
+
+.graphictoolbox-tree ul,
+.graphictoolbox-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+
+.graphictoolbox-overflow {
+  overflow: auto;
+  height: 500px;
+}
+
+.graphiclist-overflow {
+  overflow: auto;
+  height: 340px;
+}
+
+figure.item {
+  /* To correctly align image, regardless of content height: */
+  vertical-align: top;
+  display: inline-block;
+  /* To horizontally center images and caption */
+  text-align: center;
+}
+
+img {
+  max-width: 80px;
+  width: 80px;
+}
+
+.caption {
+  /* Make the caption a block so it occupies its own line. */
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nodetxtcolor:hover {
+  color: #3f51b5;
+  cursor: pointer;
+}
+.ng-star-inserted .selectednode-highlight > li {
+  color: #3f51b5 !important;
+}
+
+.ng-star-inserted .selectednode-highlight li > div:hover {
+  color: #3f51b5 !important;
+}
+
+.selectednode-highlight > div {
+  color: #3f51b5 !important;
+}
+
+.selectednode-highlight > li:hover {
+  color: #3f51b5 !important;
+}
+
+.ng-star-inserted li > div:hover {
+  color: #3f51b5 !important;
+}
